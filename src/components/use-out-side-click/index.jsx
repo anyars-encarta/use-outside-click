@@ -1,24 +1,23 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const UseOutsideClick = (ref, handler) => {
-    
-    useEffect(() => {
-        const listener = (e) => {
-            if(!ref.current || ref.current.contains(e.target)) {
-                return;
-            };
+  useEffect(() => {
+    const listener = (e) => {
+      if (!ref.current || ref.current.contains(e.target)) {
+        return;
+      }
 
-            handler(e);
-        };
+      handler(e);
+    };
 
-        document.addEventListener("mousedown", listener);
-        document.addEventListener("touchstart", listener);
-        
-        return () => {
-            document.removeEventListener("mousedown", listener)
-            document.removeEventListener("touchstart", listener)
-        };
-    }, [ref, handler])
+    document.addEventListener('mousedown', listener);
+    document.addEventListener('touchstart', listener);
+
+    return () => {
+      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('touchstart', listener);
+    };
+  }, [ref, handler]);
 };
 
 export default UseOutsideClick;
